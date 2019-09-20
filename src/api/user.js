@@ -2,15 +2,26 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/user/login',
+    url: '/crm/user/login',
     method: 'post',
-    data
+    params: {
+      username: data.username,
+      password: data.password
+    }
+  })
+}
+
+export function refreshToken(refreshToken) {
+  return request({
+    url: '/crm/user/refreshToken',
+    method: 'post',
+    params: { refreshToken }
   })
 }
 
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/crm/user/info',
     method: 'get',
     params: { token }
   })
