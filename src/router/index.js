@@ -56,6 +56,22 @@ export const constantRoutes = [
   },
 
   {
+    path: '/invoice',
+    component: Layout,
+    redirect: '/invoice/table',
+    name: '发货管理',
+    meta: { title: '发货管理', icon: 'example' },
+    children: [
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/table/index'),
+        meta: { title: 'Table', icon: 'table' }
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
@@ -149,7 +165,7 @@ export const asyncRoutes = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        meta: { roles: ['admin'], title: 'menu2' }
       }
     ]
   },
@@ -160,7 +176,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { roles: ['admin'], title: 'External Link', icon: 'link' }
       }
     ]
   },
