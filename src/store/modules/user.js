@@ -6,7 +6,8 @@ const state = {
   token: getToken(),
   refreshToken: getRefreshToken(),
   name: '',
-  avatar: ''
+  avatar: '',
+  roles: []
 }
 
 const mutations = {
@@ -67,7 +68,11 @@ const actions = {
         }
 
         const { name, depart, roles } = resultBody
-
+        // roles must be a non-empty array
+        if (!roles || roles.length <= 0) {
+          reject('用户未授权使用本系统，请联系管理员')
+        }
+        commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_DEPART', depart)
         commit('SET_ROLES', roles)
@@ -100,6 +105,7 @@ const actions = {
   resetToken({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
+      commit('SET_ROLES', [])
       removeToken()
       resolve()
     })

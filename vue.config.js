@@ -7,6 +7,7 @@ function resolve(dir) {
 }
 
 const name = defaultSettings.title || 'vue Admin Template' // page title
+
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
@@ -32,7 +33,7 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    },
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
